@@ -1,5 +1,6 @@
 use clap::Clap;
 use notify_rust::{Notification, Timeout};
+use rand::prelude::*;
 use std::time::Duration;
 use tokio::time::delay_for;
 
@@ -33,9 +34,23 @@ async fn main() {
     }
 
     let body_message = if opts.rest {
-        "Rest is over. Get back to it!"
+        let responses = [
+            "Rest is over. Get back to it!",
+            "Hope you had a good break.",
+            "Get on it, slacker!",
+        ];
+        let mut rng = rand::thread_rng();
+        let index: usize = rng.gen::<usize>() % responses.len();
+        responses[index]
     } else {
-        "Time to take a break. Consider stretching."
+        let responses = [
+            "Time to take a break. Consider stretching.",
+            "Whatever you're doing, stop doing it. Take a break.",
+            "It's break time, bud",
+        ];
+        let mut rng = rand::thread_rng();
+        let index: usize = rng.gen::<usize>() % responses.len();
+        responses[index]
     };
 
     Notification::new()
