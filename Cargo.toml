@@ -1,0 +1,18 @@
+[package]
+name = "pomo"
+version = "0.1.0"
+authors = ["Mike Cluck <mike-cluck@pluralsight.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+notify-rust = "4.0.0"
+clap = "3.0.0-beta.1"
+
+[dependencies.tokio]
+version = "0.2.21"
+features = ["macros", "rt-threaded", "time"]
+
+[build-dependencies]
+fs_extra = "1.1.0"
