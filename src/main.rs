@@ -7,7 +7,7 @@ use tokio::time::delay_for;
 #[derive(Clap)]
 #[clap(version = "1.0", author = "Mike C. <mcluck90@gmail.com>")]
 struct Opts {
-    #[clap(short, long, about = "How many minutes to run the timer for")]
+    #[clap(about = "How many minutes to run the timer for")]
     time: u64,
 
     #[clap(short, long, about = "Are you resting?")]
