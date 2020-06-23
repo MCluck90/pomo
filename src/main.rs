@@ -53,12 +53,21 @@ async fn main() {
         responses[index]
     };
 
-    Notification::new()
-        .appname("Pomo")
-        .summary("Break time!")
-        .body(body_message)
-        .image_path(&format!("file:///{}", resources.to_str().unwrap()))
-        .timeout(Timeout::Milliseconds(6000))
-        .show()
-        .unwrap();
+    loop {
+        let result = Notification::new()
+            .appname("Pomo")
+            .summary("Break time!")
+            .body(body_message)
+            .image_path(&format!("file:///{}", resources.to_str().unwrap()))
+            .timeout(Timeout::Milliseconds(6000))
+            .show();
+
+        match result {
+            Ok(_) => break,
+            Err(_) => {
+                println!("Error, retrying");
+                delay_for(Duration::from_millis(200)).await;
+            }
+        }
+    }
 }
