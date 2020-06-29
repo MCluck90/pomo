@@ -5,8 +5,10 @@ A simple timer built with tomatos in mind.
 ## Usage
 
 ```shell
-pomo --time <minutes> [--rest]
+pomo <time> [--rest]
 ```
+
+`time` is in minutes.
 
 The `--rest` option changes the messaging to indicate that you're starting a rest period.
 
