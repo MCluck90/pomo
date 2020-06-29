@@ -5,7 +5,7 @@ A simple timer built with tomatos in mind.
 ## Usage
 
 ```shell
-pomo <time> [--rest]
+pomo [--rest] <time>
 ```
 
 `time` is in minutes.
