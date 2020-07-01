@@ -2,6 +2,17 @@
 
 A simple timer built with tomatos in mind.
 
+## Installation
+
+```
+$ git clone https://github.com/MCluck90/pomo
+$ cd pomo
+$ cargo build --release
+```
+
+Then add `pomo/target/release` to your PATH or copy `pomo/target/release/pomo[.exe]` and `pomo/target/release/resources`
+to somewhere in your PATH.
+
 ## Usage
 
 ```shell
