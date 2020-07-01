@@ -14,6 +14,33 @@ struct Opts {
     rest: bool,
 }
 
+#[cfg(not(target_os = "macos"))]
+fn show_notification(
+    body_message: &str,
+    resources: std::path::PathBuf,
+) -> Result<(), notify_rust::error::Error> {
+    Notification::new()
+        .appname("Pomo")
+        .summary("Break time!")
+        .body(body_message)
+        .image_path(&format!("file:///{}", resources.to_str().unwrap()))
+        .timeout(Timeout::Milliseconds(6000))
+        .show()
+}
+
+#[cfg(target_os = "macos")]
+fn show_notification(
+    body_message: &str,
+    resources: std::path::PathBuf,
+) -> Result<(), notify_rust::error::Error> {
+    Notification::new()
+        .appname("Pomo")
+        .summary("Break time!")
+        .body(body_message)
+        .timeout(Timeout::Milliseconds(6000))
+        .show()
+}
+
 #[tokio::main]
 async fn main() {
     let opts = Opts::parse();
@@ -54,13 +81,7 @@ async fn main() {
     };
 
     loop {
-        let result = Notification::new()
-            .appname("Pomo")
-            .summary("Break time!")
-            .body(body_message)
-            .image_path(&format!("file:///{}", resources.to_str().unwrap()))
-            .timeout(Timeout::Milliseconds(6000))
-            .show();
+        let result = show_notification(body_message, resources.clone());
 
         match result {
             Ok(_) => break,
