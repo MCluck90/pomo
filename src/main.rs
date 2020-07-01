@@ -31,7 +31,7 @@ fn show_notification(
 #[cfg(target_os = "macos")]
 fn show_notification(
     body_message: &str,
-    resources: std::path::PathBuf,
+    _resources: std::path::PathBuf,
 ) -> Result<(), notify_rust::error::Error> {
     Notification::new()
         .appname("Pomo")
@@ -39,6 +39,7 @@ fn show_notification(
         .body(body_message)
         .timeout(Timeout::Milliseconds(6000))
         .show()
+        .map(|_| ())
 }
 
 #[tokio::main]
